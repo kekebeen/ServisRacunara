@@ -1,0 +1,120 @@
+﻿@model ServisRacunara.Web.Areas.Prodavac.Models.ServisniNalogVM
+@{
+    ViewBag.Title = "KreirajNalog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Kreiranje servisnog naloga</h2>
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading" style="background-color:royalblue;color:white">Podaci o klijentu</div>
+  
+    <table class="table table-danger">
+        <tr>
+            <td>Ime</td>
+            <td>Prezime</td>
+            <td>Telefon</td>
+        </tr>
+        <tr>
+            <td>@Html.TextBoxFor(x => x.ImeKlijenta, new { @disabled = "disabled" })</td>
+            <td>@Html.TextBoxFor(x => x.PrezimeKlijenta, new { @disabled = "disabled" })</td>
+            <td>@Html.TextBoxFor(x => x.TelefonKlijenta, new { @disabled = "disabled" })</td>
+        </tr>
+        <tr>
+            <td>Adresa</td>
+            <td>E-mail</td>
+            <td>Korisnicko ime</td>
+
+        </tr>
+        <tr>
+            <td>@Html.TextBoxFor(x => x.AdresaKlijenta, new { @disabled = "disabled" })</td>
+            <td>@Html.TextBoxFor(x => x.email, new { @disabled = "disabled" })</td>
+            <td>@Html.TextBoxFor(x => x.KorisnickoIme, new { @disabled = "disabled" })</td>
+
+        </tr>
+    </table>
+</div>
+<div id="dodavanje"></div>
+    @using (Html.BeginForm("SnimiNalog","Home"))
+    {
+
+        @Html.HiddenFor(x => x.KlijentId)
+
+        @Html.HiddenFor(x => x.ZahtjevZaServisId)
+        <table class="table tab-content">
+            <tr>
+                <td width="50%">
+                 <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:royalblue;color:white">Podaci o racunaru</div>
+                    <table class="table table-bordered">
+                    <tr>
+                               <td>
+                                   @Html.DropDownListFor(x => x.RacunarId, Model.Racunari, new { @size = 10, style = "width:100%" })
+                                   @Html.ValidationMessageFor(x => x.RacunarId, null, new { @class = "text-danger" })
+                                 </td>
+
+                     </tr>
+                  <tr>
+                       <td align="left">
+                            @Ajax.ActionLink("Dodaj novi racunar", "DodajRacunar", new { KlijentId = Model.KlijentId, ZahtjevZaServisId = Model.ZahtjevZaServisId }, new AjaxOptions { UpdateTargetId = "dodavanje" }, new { @class = "btn btn-success" })
+
+                           </td>
+                              </tr>
+                       </table>
+
+                      </div>
+                         </td>
+ 
+                <td width="50%">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="background-color:royalblue;color:white">Podaci o kvaru</div>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td>
+                                    @Html.DropDownListFor(x => x.KvarId, Model.Kvarovi, new { @size = 10, style = "width:100%" })
+                                    @Html.ValidationMessageFor(x => x.KvarId, null, new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    @Ajax.ActionLink("Dodaj novi kvar", "DodajKvar", new { KlijentId = Model.KlijentId, ZahtjevZaServisId = Model.ZahtjevZaServisId }, new AjaxOptions { UpdateTargetId = "dodavanje" }, new { @class = "btn btn-success" })
+
+                                </td>
+                            </tr>
+                            <tr></tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color:royalblue;color:white">Napomene: </div>
+            <table class="table table-bordered">
+               @Html.TextAreaFor(x=> x.Napomena, new { style = "width:100%;" })
+            </table>
+        </div>
+
+        <label>Računar potrebno servisirati na adresi </label>
+        @Html.HiddenFor(x => x.ServisNaAdresi)
+        @Html.DisplayFor(x => x.ServisNaAdresi)
+        <br />
+
+        <label>Računar potrebno pruzeti na adresi </label>
+        @Html.HiddenFor(x => x.Preuzimanje)
+        @Html.DisplayFor(x => x.Preuzimanje)
+        <br />
+
+        <label>Računar potrebno isporučiti poslije obavljenog servisa </label>
+        @Html.HiddenFor(x => x.Isporuka)
+        @Html.DisplayFor(x => x.Isporuka)
+
+        <br />
+
+        <hr />
+
+        <input type = "submit" value = "Snimi servisni nalog" class="btn btn-primary" />
+
+    }

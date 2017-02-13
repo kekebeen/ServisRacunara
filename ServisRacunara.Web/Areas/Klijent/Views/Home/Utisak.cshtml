@@ -1,0 +1,25 @@
+﻿@model ServisRacunara.Web.Areas.Klijent.Models.UtisakVM
+
+@{
+    ViewBag.Title = "Utisak";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2></h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Dodavanje utiska za servis racunara @Model.OznakaRacunara</div>
+    <div class="panel-body">
+    @using (Html.BeginForm("SnimiUtisak", "Home"))
+    {
+        
+        @Html.HiddenFor(x => x.ServisniNalogId)
+        @Html.HiddenFor(x => x.OznakaRacunara)
+
+        @Html.TextAreaFor(x=>x.Tekst)
+        <input type="submit" value="Snimi" class="btn btn-primary" />
+    }
+
+    </div>
+</div>
+

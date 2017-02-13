@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServisRacunara.Web", "ServisRacunara.Web\ServisRacunara.Web.csproj", "{B3F2E52A-266F-4AAA-A9C5-7AF8ABB144D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServisRacunara.Data", "ServisRacunara.Data\ServisRacunara.Data.csproj", "{9F8DF7E6-2945-45B4-89CC-525DC83395C1}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3F2E52A-266F-4AAA-A9C5-7AF8ABB144D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3F2E52A-266F-4AAA-A9C5-7AF8ABB144D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3F2E52A-266F-4AAA-A9C5-7AF8ABB144D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3F2E52A-266F-4AAA-A9C5-7AF8ABB144D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F8DF7E6-2945-45B4-89CC-525DC83395C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F8DF7E6-2945-45B4-89CC-525DC83395C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F8DF7E6-2945-45B4-89CC-525DC83395C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F8DF7E6-2945-45B4-89CC-525DC83395C1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,43 @@
+﻿@model ServisRacunara.Web.Areas.Serviser.Models.KvarDetailsVM
+@using ServisRacunara.Web.Areas.Serviser.Models
+@using ServisRacunara.Data.MODELS
+@{
+    ViewBag.Title = "KvarDetails";
+    Layout = null;
+}
+
+
+<h2>Rjesenje kvara</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">Rjesenja kvara</div>
+    </div>
+    <!-- Default panel contents -->
+   <div class="panel-body">
+
+       <div class="tab-content tab-content-bordered">
+           <table class="table table-condensed">
+               <tr>
+                   <th>Datum rjesenja</th>
+                   <th>Hardware</th>
+                   <th>Software</th>
+                   <th>Detaljno</th>
+                   <th>Trajanje</th>
+               </tr>
+               @foreach (RjesenjeStavke x in Model.Rjesenja)
+               {
+                   <tr>
+                       <td>@x.Datum.ToShortDateString()</td>
+                       <td>@x.Hardware</td>
+                       <td>@x.Software</td>
+                       <td>@x.Opis</td>
+                       <td>@(x.Trajanje + " MIN")</td>
+                   </tr>
+               }
+
+           </table>
+         
+       </div>
+   </div>
+</div>

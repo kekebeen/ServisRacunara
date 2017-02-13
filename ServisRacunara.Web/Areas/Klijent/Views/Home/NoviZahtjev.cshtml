@@ -1,0 +1,54 @@
+﻿@model ServisRacunara.Data.MODELS.ZahtjevZaServis
+
+@{
+    ViewBag.Title = "NoviZahtjev";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2></h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Kreiranje novog zahtjeva za servis</div>
+    <div class="panel-body">
+       @using (Html.BeginForm("SnimiZahtjev", "Home"))
+       {
+        @Html.HiddenFor(model => model.KlijentId)
+
+         
+                       <div class="form-group">
+                           <label>Opis kvara</label><br />
+                           @Html.TextAreaFor(model => model.Napomena)
+                           @Html.ValidationMessageFor(model => model.Napomena)
+                       </div>
+                   
+                       <div class="form-group">
+                           <label>Servis na adresi</label><br />
+                           @Html.CheckBoxFor(model => model.ServisNaAdresi)
+                       </div>
+
+                    <div class="form-group">
+                        <label>Preuzimanje računara na adresi</label><br />
+                        @Html.CheckBoxFor(model => model.Preuzimanje)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Isporuka računara na dresu po obavljenom servisu</label><br />
+                        @Html.CheckBoxFor(model => model.Isporuka)
+                    </div>
+
+                       <div class="form-group">
+                           <label>Adresa</label><br />
+                           @Html.TextBoxFor(model => model.Adresa)
+                           @Html.ValidationMessageFor(model => model.Adresa)
+                       </div>
+                       
+        <div>
+            @Html.ValidationSummary()
+        </div>
+        <input type="submit" value="Snimi" class="btn btn-primary" />
+       }
+
+    </div>
+</div>
+
+

@@ -1,0 +1,42 @@
+﻿@model ServisRacunara.Web.Areas.Serviser.Models.ServiserRacunVM
+@using ServisRacunara.Web.Areas.Serviser.Models
+@{
+    ViewBag.Title = "PrikaziRacun";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Račun</h2>
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading" style="background-color:royalblue;color:white">Ime i prezime: @Model.ImePrezime  //  Adresa: @Model.Adresa  //  Telefon: @Model.Telefon</div>
+    <div class="panel-body">
+        <p>Datum: @Model.DatumKreiranja.ToShortDateString()  //  Oznaka racunara: @Model.OznakaRacunara</p>
+    </div>
+
+    <table class="table table-hover">
+        <tr>
+            <th>Naziv</th>
+            <th>Opis</th>
+            <th>Usluga</th>
+            <th>Cijena</th>
+            <th>Obrisi</th>
+
+
+        </tr>
+        @foreach (ServiserRacunStavka x in Model.Stavke)
+        {
+            <tr>
+                <td>@x.Naziv</td>
+                <td>@x.Opis</td>
+                <td>@Html.DisplayFor(y => x.Usluga)</td>
+                <td align="left">@x.Cijena KM</td>
+                <td>@Html.ActionLink("Obrisi", "ObrisiStavkuRacuna", new { StavkaRacunaId = x.StavkaRacunaId, RacunId = Model.RacunId }, new { @class = "btn btn-danger" }) </td>
+            </tr>
+        }
+        <tr><td></td><td></td><td></td><td align="left" style="background-color:royalblue; color:white">  Ukupno: @Model.Iznos KM</td></tr>
+    </table>
+    @Ajax.ActionLink("Dodaj artikal", "DodajArtikal", new { RacunId = Model.RacunId }, new AjaxOptions { UpdateTargetId = "Artikli" }, new { @class = "btn btn-danger btn-sm" })
+    @Ajax.ActionLink("Dodaj novi artikal u listu","DodajProizvod", new { RacunId = Model.RacunId}, new AjaxOptions { UpdateTargetId = "Artikli" }, new { @class="btn btn-danger btn-sm"})
+</div>
+<div id="Artikli"></div>

@@ -1,0 +1,100 @@
+﻿@model ServisRacunara.Web.Areas.Administrator.Models.UposleniciIndexVM
+@using ServisRacunara.Data.MODELS
+@using ServisRacunara.Web.Areas.Administrator.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-4">
+            <h1>
+                <i class="glyphicons fa fa-user-md"></i>
+                <span class="text-muted font-weight-light">Admin Panel Pregled</span>
+            </h1>
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("Dodaj novog uposlenika","New")
+        </div>
+        <div class="col-md-4">
+            @using (Html.BeginForm("PretragaUposlenikaPoImenu", "Uposlenici", FormMethod.Get))
+            {
+                <div class="input-group">
+                    <span class="input-group-addon b-a-0 note-fontsize-10">
+                        <i class="fa fa-search"></i>
+                    </span>
+                    @Html.TextBoxFor(x => x.searchQuery,new { @class="form-control p-l-0 b-a-0", placeholder="Pretraga korisnika"})
+                </div>
+                
+            }
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-top:50px" id="ajaxDiv">
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-title">Zaposleni</span>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ime</th>
+                    <th>Prezime</th>
+                    <th>Adresa</th>
+                    <th>Telefon</th>
+                    <th>Administrator</th>
+                    <th>Serviser</th>
+                    <th>Prodavac</th>
+                    <td>Akcija</td>
+                    <td>Akcija</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (KorisnikRowVM x in Model.Uposleni)
+                {
+                    <tr>
+                        <td>@x.Ime</td>
+                        <td>@x.Prezime</td>
+                        <td>@x.Adresa</td>
+                        <td>@x.Telefon</td>
+                        <td>
+                            @if (@x.Administrator == "DA")
+                            {
+                                <span class="label label-success">@x.Administrator</span>
+                            }
+                            else
+                            {
+                                <span class="label label-danger">@x.Administrator</span>
+                            }
+                        </td>
+                        <td>
+                            @if (@x.Serviser == "DA")
+                            {
+                                <span class="label label-success">@x.Serviser</span>
+                            }
+                            else
+                            {
+                                <span class="label label-danger">@x.Serviser</span>
+                            }
+                        </td>
+                        <td>
+                            @if (@x.Prodavac == "DA")
+                            {
+                                <span class="label label-success">@x.Prodavac</span>
+                            }
+                            else
+                            {
+                                <span class="label label-danger">@x.Prodavac</span>
+                            }
+                        </td>
+                        <td>@Html.ActionLink("Edit", "Edit", new { uposlenikId= @x.UposlenikId}, new { @class = "btn btn-primary" })</td>
+                        <td>@Html.ActionLink("Obrisi", "DeleteProfil", new { id = @x.UposlenikId}, new { @class="btn btn-danger" })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

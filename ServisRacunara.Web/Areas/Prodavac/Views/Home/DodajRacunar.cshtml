@@ -1,0 +1,41 @@
+﻿@model ServisRacunara.Web.Areas.Prodavac.Models.DodajRacunarZahtjevVM
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("SnimiRacunar", "Home"))
+{
+    @Html.HiddenFor(x => x.VlasnikId)
+    @Html.HiddenFor(x => x.ZahtjevZaServisId)
+    <table width="500">
+        <tr>
+            <td>
+                <label>Oznaka</label>
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.Oznaka)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Operativni sistem</label>
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.OS)
+
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Procesor/RAM/HDD/GPU</label>
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.Opis) &nbsp; <input type="submit" value="Snimi" class="btn btn-primary" />
+
+
+            </td>
+        </tr>
+    </table>
+
+}

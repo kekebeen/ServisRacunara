@@ -1,0 +1,13 @@
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\ServisRacunara\ServisRacunara.Data\bin\Debug\ServisRacunara.Data.dll.config
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\ServisRacunara\ServisRacunara.Data\bin\Debug\ServisRacunara.Data.dll
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\ServisRacunara\ServisRacunara.Data\bin\Debug\ServisRacunara.Data.pdb
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\ServisRacunara\ServisRacunara.Data\bin\Debug\EntityFramework.dll
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\ServisRacunara\ServisRacunara.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\ServisRacunara\ServisRacunara.Data\bin\Debug\EntityFramework.xml
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\ServisRacunara\ServisRacunara.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\ServisRacunara\ServisRacunara.Data\obj\Debug\ServisRacunara.Data.csprojResolveAssemblyReference.cache
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\ServisRacunara\ServisRacunara.Data\obj\Debug\ServisRacunara.Data.dll
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\ServisRacunara\ServisRacunara.Data\obj\Debug\ServisRacunara.Data.pdb
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\ServisRacunara\ServisRacunara.Data\obj\Debug\ServisRacunara.Data.Migrations.UpdatedKorisnikTable.resources
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\ServisRacunara\ServisRacunara.Data\obj\Debug\ServisRacunara.Data.csproj.GenerateResource.Cache
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\ServisRacunara\ServisRacunara.Data\obj\Debug\ServisRacunara.Data.Migrations.UpdatedUposlenikTable.resources

@@ -1,0 +1,86 @@
+﻿@model ServisRacunara.Web.Areas.Administrator.Models.ServisiRacunVM
+@using ServisRacunara.Web.Areas.Administrator.Models
+@{
+    ViewBag.Title = "ServisiPrikaziRacun";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h1>Racun</h1>
+    @Html.ActionLink("Print racuna", "RacunPrint",new { RacunId = Model.RacunId}, new { @class="pull-right btn btn-primary", target="_blank" })
+
+</div>
+
+<div class="panel">
+    <div class="panel-body p-a-4 b-b-4 darken">
+        <div class="box m-a-0 border-radius-0 darken">
+            <div class="box-row valign-middle">
+                <div class="box-cell col-md-8">
+                    <div class="display-inline-block m-r-3 valign-middle">
+                        <div class="text-muted">Oznaka racunara</div>
+                        <div class="font-weight-bold">@Model.OznakaRacunara</div>
+                    </div>
+                    <div class="display-inline-block p-l-1 b-l-3 valign-middle">
+                        <div>Adresa Firme 1</div>
+                        <div>Broj Telefona firme</div>
+                        <div>Drzava firme</div>
+                    </div>
+                </div>
+                <div class="box-cell col-md-4">
+                    <div class="pull-md-right font-size-15">
+                        <div class="text-muted line-height-1">
+                            <strong>@Model.DatumKreiranja.ToShortDateString()</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body p-a-4 b-b-2">
+        <div class="box m-a-0 border-radius-0">
+            <div class="box-row valign-middle">
+                <div class="box-cell col-md-6 font-size-14">
+                    <div><strong>@Model.ImePrezime</strong></div>
+                    <div>@Model.Adresa</div>
+                    <div>@Model.Telefon</div>
+                </div>
+                <div class="box-cell col-md-6 darken p-x-3 p-y-2">
+                    <div class="pull-xs-left m-y-1 text-muted">
+                        <strong>TOTAL: </strong>
+                    </div>
+                    <div class="pull-xs-right font-size-24">
+                        <strong>@Model.Iznos</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body p-a-4">
+        <div class="table-responsive">
+            <table class="table m-a-0">
+                <thead>
+                    <tr class="darken">
+                        <th class="p-x-2">Naziv</th>
+                        <th class="p-x-2">Opis</th>
+                        <th class="p-x-2">Usluga</th>
+                        <th class="p-x-2">Cijena</th>
+                    </tr>
+                </thead>
+                <tbody class="font-size-14">
+                    @foreach (RacunStavkaVM x in Model.Stavke)
+                    {
+                        <tr>
+                            <td>@x.Naziv</td>
+                            <td>@x.Opis</td>
+                            <td>@Html.DisplayFor(y => x.Usluga)</td>
+                            <td align="left">@x.Cijena KM</td>
+                            <td>@Html.ActionLink("Obrisi", "ObrisiStavkuRacuna", new { StavkaRacunaId = x.StavkaRacunaId, RacunId = Model.RacunId }, new { @class = "btn btn-danger" }) </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

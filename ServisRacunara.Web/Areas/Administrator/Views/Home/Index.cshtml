@@ -1,0 +1,158 @@
+﻿@model ServisRacunara.Web.Areas.Administrator .Models.AdministratorIndexVM
+@using ServisRacunara.Data.MODELS
+@using ServisRacunara.Web.Areas.Administrator.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-4">
+            <h1>
+                <i class="glyphicons fa fa-user-md"></i>
+                <span class="text-muted font-weight-light">Admin Panel Pregled</span>
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="box bg-info darken">
+            <div class="box-cell p-x-3 p-y-1">
+                <div class="font-weight-light">Zaposlenih</div>
+                <div class="font-weight-bold">@Model.BrojZaposlenih</div>
+                <i class="box-bg-icon middle right fa fa-users"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="box bg-danger darken">
+            <div class="box-cell p-x-3 p-y-1">
+                <div class="font-weight-light">Korisnika</div>
+                <div class="font-weight-bold">@Model.BrojKorisnika</div>
+                <i class="box-bg-icon middle right fa fa-users"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="box bg-success darken">
+            <div class="box-cell p-x-3 p-y-1">
+                <div class="font-weight-light">Zahtjeva za servis</div>
+                <div class="font-weight-bold">@Model.BrojZahtjeva</div>
+                <i class="box-bg-icon middle right fa fa-users"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="box bg-warning darken">
+            <div class="box-cell p-x-3 p-y-1">
+                <div class="font-weight-light">Servisnih naloga</div>
+                <div class="font-weight-bold">@Model.BrojServisnihNaloga</div>
+                <i class="box-bg-icon middle right fa fa-users"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4"></div>
+</div>
+
+<hr class="page-wide-block m-y-0" />
+
+<div class="row" style="margin-top:50px;">
+    <div class="col-md-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    Zadnji zahtjevi za servis
+                </div>
+            </div>
+            @foreach (ZahtjevZaServis x in Model.Zahtjevi)
+            {
+                <div class="widget-activity-item">
+                    <div class="widget-activity-header">
+                        @x.Klijent.Ime  @x.Klijent.Prezime
+                        <div class="pull-xs-right p-1-1">
+                            <div>@x.Adresa</div>
+                        </div>
+                    </div>
+                    <div class="widget-activity-footer">@x.Datum.ToString()</div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    Zadnji servisni nalozi
+                </div>
+            </div>
+            @foreach (ServisniNalog x in Model.Nalozi)
+            {
+                <div class="widget-activity-item">
+                    <div class="widget-activity-header">
+                        @x.NalogKreirao.Korisnik.Ime
+                        <div class="pull-xs-right p-1-1">
+                            <strong>@x.Status.Naziv</strong>
+                        </div>
+                    </div>
+                    <div class="widget-activity-footer">@x.DatumPrijema</div>
+                </div>
+            }
+        </div>
+    </div>
+   
+</div>
+
+<hr class="page-wide-block m-y-0" />
+<div class="row" style="margin-top:50px;">
+    <div class="col-md-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    Zadnji uposlenici
+                </div>
+            </div>
+            @foreach (Uposlenik x in Model.Uposlenici)
+            {
+                <div class="widget-activity-item">
+                    <div class="widget-activity-header">
+                        @x.Korisnik.Ime @x.Korisnik.Prezime
+                        <div class="pull-xs-right p-1-1">
+                            <div>@Html.ActionLink("Uredi profil", "Edit", "Uposlenici", new { uposlenikId = @x.UposlenikId }, new { @class = "btn btn-primary" })</div>
+                        </div>
+                    </div>
+                    <div class="widget-activity-footer">
+                        @x.Korisnik.KorisnickoIme
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    Mjesecna zarada
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="box-cell">
+                    <div class="pull-xs-right label label-success">@DateTime.Now.ToString("MMMM")</div>
+                    <div class="font-size-20">
+                        <small>$</small>
+                        <strong>@Model.MjesecnaZaradaUkupno</strong>
+                    </div>
+                    <div class="text-muted font-weight-light">Zadnjih 30 dana </div>
+                    <div class="m-t-4" id="monthly-income-graph" style="height: 150px;width:400px;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿@model ServisRacunara.Web.Areas.Serviser.Models.BazaZnanjaIndexVm
+@using ServisRacunara.Web.Areas.Serviser.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Pregled Kvarova</h2>
+
+<br />
+<br />
+
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+      
+        <table class="table table-bordered">
+
+            <tr>
+                <th>Opis kvara</th>
+                <th>Hardware</th>
+                <th>Software</th>
+                <th>Detaljno</th>
+            </tr>
+                @foreach (KvaroviStavke x in Model.Kvarovi)
+                {
+                    <tr>
+                        <td>@x.Opis</td>
+                        <td>@x.Hardware</td>
+                        <td>@x.Software</td>
+                        <td>@Ajax.ActionLink("Detaljno","Details",new { KvarId = @x.KvarId},new AjaxOptions {UpdateTargetId = "detaljno"}, new { @class = "btn btn-success btn-sm" })</td>
+                    </tr>
+                }
+        </table>
+    </div>
+
+    <br />
+
+<div id="detaljno"></div>
+

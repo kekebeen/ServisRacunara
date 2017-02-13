@@ -1,0 +1,36 @@
+﻿@model ServisRacunara.Web.Areas.Serviser.Models.ServiserDodajProizvodVM
+
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("SnimiNoviProizvod", "Home",FormMethod.Post))
+{
+    <div>
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x => x.RacunId)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.Naziv)
+        <br />
+        @Html.TextBoxFor(x => x.Naziv)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.Opis)
+        <br />
+        @Html.TextBoxFor(x => x.Opis)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Cijena)
+        <br />
+        @Html.TextBoxFor(x => x.Cijena)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.Usluga)
+        <input type="checkbox" value="@Model.Usluga" />
+    </div>
+
+    <input type="submit" value="Dodaj" class="btn btn-primary" />
+
+}

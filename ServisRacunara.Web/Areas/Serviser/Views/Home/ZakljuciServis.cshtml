@@ -1,0 +1,23 @@
+﻿@model ServisRacunara.Web.Areas.Serviser.Models.ZakljuciServisVM
+
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("SnimiZakljucakServisa", "Home"))
+{
+    @Html.HiddenFor(x => x.ServisniNalogId)
+    @Html.HiddenFor(x => x.NalogKreiraoId)
+    @Html.HiddenFor(x => x.StatusId)
+
+    @Html.LabelFor(x => x.DatumZavrsetka)
+    @Html.TextBoxFor(x => x.DatumZavrsetka, new { @Value = DateTime.Now.ToShortDateString() })<br />
+
+    @Html.LabelFor(x => x.Naziv)
+    @Html.TextBoxFor(x => x.Naziv, new { @Value="Zavrsen servis"})
+
+    <br />
+
+    <input type="submit" value="Dodaj" class="btn btn-primary" />
+
+}

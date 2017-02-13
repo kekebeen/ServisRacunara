@@ -1,0 +1,36 @@
+﻿@model ServisRacunara.Web.Areas.Prodavac.Models.DodajKvarZahtjevVM
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("SnimiKvar", "Home"))
+{
+    @Html.HiddenFor(x => x.ZahtjevZaServisId)
+    <table width="500">
+        <tr>
+            <td>
+                <label>Opis kvara</label>
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.Opis)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Hardware</label>
+            </td>
+            <td>
+                @Html.CheckBoxFor(x=>x.Hardware)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Software</label>
+            </td>
+            <td>
+                @Html.CheckBoxFor(x => x.Software) &nbsp; <input type="submit" value="Snimi" class="btn btn-primary" />
+            </td>
+        </tr>
+    </table>
+
+}

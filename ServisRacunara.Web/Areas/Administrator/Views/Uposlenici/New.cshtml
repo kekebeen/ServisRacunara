@@ -1,0 +1,105 @@
+﻿@model ServisRacunara.Web.Areas.Administrator.Models.UposleniciNewVM
+@using ServisRacunara.Data.MODELS
+@using ServisRacunara.Web.Areas.Administrator.Models
+@{
+    ViewBag.Title = "NoviUposlenik";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-header m-b-0 p-b-0 b-b-0">
+    <h1>Profil <span class="text-muted font-weight-light">Postavke</span></h1>
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#profile" role="tab" data-toggle="tab">Korisnicki Detalji</a>
+        </li>
+        <li role="presentation">
+            <a href="#password" role="tab" data-toggle="tab">Password</a>
+        </li>
+        <li role="presentation">
+            <a href="#plate" role="tab" data-toggle="tab">Plate</a>
+        </li>
+    </ul>
+</div>
+
+<div class="row">
+    @using (Html.BeginForm("KreirajProfil", "Uposlenici", FormMethod.Post, new { @class = "col-md-12" }))
+    {
+        <div id="wizard">
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="profile">
+                    <!-- Input fields -->
+                    <div class="form-group form-group-lg">
+                        @Html.LabelFor(x => x.Ime)
+                        @Html.TextBoxFor(x => x.Ime, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group form-group-lg">
+                        @Html.LabelFor(x => x.Prezime)
+                        @Html.TextBoxFor(x => x.Prezime, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group form-group-lg">
+                        @Html.LabelFor(x => x.KorisnickoIme)
+                        @Html.TextBoxFor(x => x.KorisnickoIme, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group form-group-lg">
+                        @Html.LabelFor(x => x.Email)
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group form-group-lg">
+                        @Html.LabelFor(x => x.Adresa)
+                        @Html.TextBoxFor(x => x.Adresa, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group form-group-lg">
+                        @Html.LabelFor(x => x.Telefon)
+                        @Html.TextBoxFor(x => x.Telefon, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group form-group-lg">
+                        @Html.LabelFor(x => x.Klijent)
+                        @Html.EditorFor(x => x.Klijent, new { @class = "form-control", @Value=false })
+
+                        @Html.LabelFor(x => x.Administrator)
+                        @Html.EditorFor(x => x.Administrator, new { @class = "form-control", @Value=false })
+
+                        @Html.LabelFor(x => x.Serviser)
+                        @Html.EditorFor(x => x.Serviser, new { @class = "form-control", @Value=false })
+
+                        @Html.LabelFor(x => x.Prodavac)
+                        @Html.EditorFor(x => x.Prodavac, new { @class = "form-control", @Value=false })
+                    </div>
+                    <div class="form-group form-group-lg">
+                        @Html.LabelFor(x => x.UgovorPocetak)
+                        @Html.TextBoxFor(x => x.UgovorPocetak, new { @class = "form-control", @Value=DateTime.Today })
+                    </div>
+                    <div class="form-group form-group-lg">
+                        @Html.LabelFor(x => x.UgovorKraj)
+                        @Html.EditorFor(x => x.UgovorKraj, new { @class = "form-control" })
+                    </div>
+
+                    <button type="submit" class="btn btn-lg btn-primary m-t-3">Spasi izmjene</button>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="password">
+                    <div class="form-group form-group-lg">
+                        @Html.LabelFor(x => x.Lozinka)
+                        @Html.TextBoxFor(x => x.Lozinka, new { @class = "form-control" })
+                    </div>
+
+                    <button type="submit" class="btn btn-lg btn-primary m-t-3">Spasi izmjene</button>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="plate">
+                    <!-- Input fields -->
+                    <div class="form-group form-group-lg">
+                        @Html.HiddenFor(x => x.plataId)
+                        @Html.HiddenFor(x => x.isplataId)
+                        @Html.LabelFor(x => x.iznos)
+                        @Html.TextBoxFor(x => x.iznos, new { @class = "form-control" })
+                    </div>
+
+                    <button type="submit" class="btn btn-lg btn-primary m-t-3">Spasi izmjene</button>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>

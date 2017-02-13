@@ -1,0 +1,81 @@
+﻿@model ServisRacunara.Web.Areas.Prodavac.Models.PregledServisaVM
+    @using ServisRacunara.Web.Areas.Prodavac.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <h2>Pregled servisa</h2>
+<table class="table table-info">
+    <tr>
+        <td>@Html.ActionLink("Svi nalozi", "Index", null, new { @class = "btn btn-primary" })</td>
+        <td>@Html.ActionLink("Nepreuzeti nalozi", "NisuPreuzetiNalozi", null, new { @class = "btn btn-primary" })</td>
+        <td>@Html.ActionLink("Preuzeti nalozi", "PreuzetiNalozi", null, new { @class = "btn btn-primary" })</td>
+        
+    </tr>
+    <tr>
+        <td>
+            @using (Html.BeginForm("NaloziPoServiseru", "Pregled"))
+        {
+            <label>Pretraga po serviseru: </label>
+            @Html.DropDownListFor(x => x.ServiserId, Model.Serviseri)
+            <input type="submit" value="Prikazi" class="btn btn-primary" />
+        }
+    </td>
+    <td>
+        @using (Html.BeginForm("NaloziPoImenuKlijenta", "Pregled"))
+    {
+        <label>Pretraga po imenu i prezimenu klijenta: </label>
+            @Html.TextBoxFor(x => x.ImePrezimeKlijenta)
+            <input type="submit" value="Prikazi" class="btn btn-primary" />
+    }
+    </td>
+        <td></td>
+    </tr>
+</table>
+
+<br />
+<br />
+
+@foreach (PregledStavke x in Model.Stavke)
+{
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading" style="background-color:royalblue;color:white">Klijent: <text class="text-bold">@x.ImeKlijenta @x.PrezimeKlijenta</text> // Datum kreiranja: <text class="text-bold">@x.DatumKreiranja.ToShortDateString() </text>// Status: <text class="text-bold">@x.Status</text> </div>
+        <table class="table table-bordered">
+           
+            <tr>
+                <th>Oznaka racunara</th>
+                <th>Opis kvara</th>
+                <th>Napomena</th>
+                <th>Servis na adresi</th>
+                <th>Isporuka</th>
+                <th>Preuzimanje</th>
+                <th>Serviser</th>
+                <th>Račun</th>
+
+
+            </tr>
+            <tr>
+                <td>@x.OznakaRacunara</td>
+                <td width="20%">@x.OpisKvara</td>
+                <td width="20%">@x.Napomena</td>
+                <td align="center">@Html.CheckBoxFor(y=> x.ServisNaAdresi, new { @disabled = "disabled" })</td>
+                <td align="center">@Html.CheckBoxFor(y => x.Isporuka, new { @disabled = "disabled" })</td>
+                <td align="center">@Html.CheckBoxFor(y => x.Preuzimanje, new { @disabled = "disabled" })</td>
+                <td  width="10%">@x.ServiserIme // @if (x.ServiserIme != "Servis nije preuzet") { @x.ServiserPreuzeo.ToShortDateString(); }</td>
+                <td>@Html.ActionLink("Prikazi", "PrikaziRacun", new { RacunId = @x.RacunId },new { @class= "btn btn-danger btn-sm" })</td>
+</tr>
+
+
+
+
+</table>
+
+
+</div>
+
+
+<br />
+}

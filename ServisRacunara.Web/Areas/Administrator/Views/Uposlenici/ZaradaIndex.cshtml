@@ -1,0 +1,32 @@
+﻿@model ServisRacunara.Web.Areas.Administrator.Models.GodisnjaZaradaVM
+@using ServisRacunara.Data.MODELS
+@using ServisRacunara.Web.Areas.Administrator.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-4">
+            <h1>
+                <i class="glyphicons fa fa-user-md"></i>
+                <span class="text-muted font-weight-light">Admin Panel Pregled</span>
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-top:50px">
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-title">Pregled Godisnjeg stanja</span>
+        </div>
+        
+        <div class="panel-body">
+            <div class="m-t-4" id="godisnja-zarada" style="height: 450px;width:100%;">
+
+            </div>
+        </div>
+    </div>
+</div>

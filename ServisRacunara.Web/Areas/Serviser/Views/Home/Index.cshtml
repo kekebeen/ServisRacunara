@@ -1,0 +1,72 @@
+﻿@model ServisRacunara.Web.Areas.Serviser.Models.ServiserIndexVM
+@using ServisRacunara.Web.Areas.Serviser.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Pregled servisa</h2>
+<table class="table table-info">
+    <tr>
+        <td>@Html.ActionLink("Svi nalozi", "Index", null, new { @class = "btn btn-primary" })</td>
+        <td>@Html.ActionLink("Moji nalozi", "PreuzetiNalozi",null, new { @class = "btn btn-primary" })</td>
+    </tr>
+</table>
+
+<br />
+<br />
+
+@foreach (ServiserIndexStavkeVM x in Model.Stavke)
+{
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading" style="background-color:royalblue;color:white">Klijent: <text class="text-bold">@x.ImeKlijenta @x.PrezimeKlijenta</text> // Datum kreiranja: <text class="text-bold">@x.DatumKreiranja.ToShortDateString() </text>// Status: <text class="text-bold">@x.Status</text> </div>
+        <table class="table table-bordered">
+
+            <tr>
+                <th>Oznaka racunara</th>
+                <th>Opis kvara</th>
+                <th>Napomena</th>
+                <th>Servis na adresi</th>
+                <th>Isporuka</th>
+                <th>Preuzimanje</th>
+                <th>Serviser</th>
+                <th>Račun</th>
+                @if (x.StatusId == 1)
+                {
+                    <th>Utisak</th>
+                }
+            </tr>
+            <tr>
+                <td>@x.OznakaRacunara</td>
+                <td width="20%">@x.OpisKvara</td>
+                <td width="20%">@x.Napomena</td>
+                <td align="center">@Html.CheckBoxFor(y => x.ServisNaAdresi, new { @disabled = "disabled" })</td>
+                <td align="center">@Html.CheckBoxFor(y => x.Isporuka, new { @disabled = "disabled" })</td>
+                <td align="center">@Html.CheckBoxFor(y => x.Preuzimanje, new { @disabled = "disabled" })</td>
+                <td align="center">
+                    @if (x.ServiserIme != "Servis nije preuzet")
+                    {
+                        @(x.ServiserIme + " // " + x.ServiserPreuzeo.ToShortDateString())
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Preuzmi", "PreuzmiServis", new { ServisniNalogId = @x.ServisniNalogId }, new { @class = "btn btn-danger btn-sm" })
+                    }
+                </td>
+                <td>@Html.ActionLink("Prikazi", "PrikaziRacun", new { RacunId = @x.RacunId }, new { @class = "btn btn-danger btn-sm" })</td>
+                @if (x.ServiserIme != "Servis nije preuzet" && x.StatusId != 2)
+                {
+                    <td>
+                        @Ajax.ActionLink("Zakljuci Servis","ZakljuciServis", new { ServisniNalogId = @x.ServisniNalogId}, new AjaxOptions { UpdateTargetId = "ostavi-utisak" })
+                    </td>
+                }
+            </tr>
+        </table>
+    </div>
+
+    <br />
+}
+
+<div id="ostavi-utisak"></div>

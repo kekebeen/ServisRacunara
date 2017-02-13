@@ -1,0 +1,119 @@
+﻿@model ServisRacunara.Web.Areas.Klijent.Models.KlijentIndexVM
+@using ServisRacunara.Data.MODELS
+@using ServisRacunara.Web.Areas.Klijent.Models
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Dobrodošao @Model.Ime</h2>
+<br />
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading" style="background-color:royalblue;color:white">Zahtjevi za servis</div>
+    <div class="panel-body">
+        <p>U ovoj tabeli su vaši zahtjevi koji još nisu obrađeni</p>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Datum zahtjeva</th>
+                <th>Napomena</th>
+                <th>Servis na adresi</th>
+                <th>Preuzimanje</th>
+                <th>Isporuka</th>
+                <th>Adresa</th>
+                <th>Obrisi</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (ZahtjevZaServis x in Model.ZahtjeviZaServis)
+            {
+                <tr>
+                    <td>@x.Datum.ToShortDateString()</td>
+                    <td>@x.Napomena</td>
+                    <td>
+                        @if (@x.ServisNaAdresi)
+                        {<label>DA</label>}
+                else {<label>NE</label>}
+                    </td>
+                    <td>
+                        @if (@x.Preuzimanje)
+                        {<label>DA</label>}
+                else {<label>NE</label>}
+                    </td>
+                    <td>
+                        @if (@x.Isporuka)
+                        {<label>DA</label>}
+                else {<label>NE</label>}
+                    </td>
+                    <td>@x.Adresa</td>
+
+                    <td>
+                        @Html.ActionLink("Obriši", "ObrisiZahtjev", new { ZahtjevZaServisId = x.ZahtjevZaServisId }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading" style="background-color:royalblue;color:white">Servisni nalozi</div>
+    <div class="panel-body">
+        <p>U ovoj tabeli su vaši aktivni servisi</p>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Datum preuzimanja</th>
+                <th>Oznaka racunara</th>
+                <th>Opis racunara</th>
+                <th>Status</th>
+                <th>Datum završetka</th>
+                <th>Utisak</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (ServisniNaloziKlijentVM x in Model.ServisniNalozi)
+            {
+                <tr>
+                    <td>@x.Datum.ToShortDateString()</td>
+                    <td>@x.OznakaRacunara</td>
+                    <td>@x.OpisRacunara</td>
+
+                    <td>@x.Status</td>
+                    <td>
+                        @if (@x.DatumZavrsetka==null)
+                        {<label>Servis nije završen</label>}
+                else {<label>@x.DatumZavrsetka</label>}
+                    </td>
+                    <td>
+                       @if(@x.Utisak != null)
+                       {
+                           @x.Utisak
+                       }
+                       else { 
+                         if (@x.DatumZavrsetka == null)
+                        {<label>Utisak možete ostaviti po završetku servisa</label>}
+                else {@Html.ActionLink("Dodaj utisak", "DodajUtisak", new { ServisniNalogId = x.ServisniNalogId }, new { @class = "btn btn-success btn-sm" })}
+                       }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

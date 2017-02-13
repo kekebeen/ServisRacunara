@@ -1,0 +1,79 @@
+﻿@model ServisRacunara.Web.Areas.Administrator.Models.ServisiRacunVM
+@using ServisRacunara.Web.Areas.Administrator.Models
+@{
+    ViewBag.Title = "ServisiPrintRacun";
+    Layout = null;
+}
+<script>
+	window.onload = function () {
+		window.print();
+	};
+</script>
+
+
+<div class="page-invoice page-invoice-print">
+
+    <div class="invoice">
+        <div class="invoice-header">
+            <h3>
+                <div>
+                    <small><strong>Racunar</strong>Oznaka</small><br>
+                    @Model.OznakaRacunara
+                </div>
+            </h3>
+            <address>
+                Ime Firme <br>
+                Los Angeles, Hoover Street, 32<br>
+                90080 CA, USA
+            </address>
+            <div class="invoice-date">
+                <small><strong>Datum</strong></small><br>
+                @Model.DatumIzdavanja.ToShortDateString()
+            </div>
+        </div> <!-- / .invoice-header -->
+        <div class="invoice-info">
+            <div class="invoice-recipient">
+                <strong>@Model.ImePrezime</strong><br>
+                @Model.Adresa<br>
+                @Model.Telefon
+            </div> <!-- / .invoice-recipient -->
+            <div class="invoice-total">
+                UKUPNO:
+                <span>@Model.Iznos</span>
+            </div> <!-- / .invoice-total -->
+        </div> <!-- / .invoice-info -->
+        <hr>
+        <div class="invoice-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Naziv
+                        </th>
+                        <th>
+                            Opis
+                        </th>
+                        <th>
+                            Usluga
+                        </th>
+                        <th>
+                            Cijena
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (RacunStavkaVM x in Model.Stavke)
+                    {
+                        <tr>
+                            <td>@x.Naziv</td>
+                            <td>@x.Opis</td>
+                            <td>@Html.DisplayFor(y => x.Usluga)</td>
+                            <td align="left">@x.Cijena KM</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div> <!-- / .invoice-table -->
+    </div> <!-- / .invoice -->
+
+</div>

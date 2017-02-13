@@ -1,0 +1,17 @@
+﻿@model ServisRacunara.Web.Areas.Serviser.Models.ServiserDodajArtikalVM
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("SnimiNoviArtikal", "Home"))
+{
+    @Html.HiddenFor(x => x.RacunId)
+
+    @Html.DropDownListFor(x => x.ProizvodId, Model.ListaArtikala, new { @size = 10, style = "width:80%" })
+
+    <br />
+
+    <input type="submit" value="Dodaj" class="btn btn-primary" />
+
+}
+
